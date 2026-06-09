@@ -1,3 +1,7 @@
+Remember to run only this command to save the scripts to local folder and then you can run programs directly as program2(enter) ...
+curl -fsSL https://raw.githubusercontent.com/SolarBeamRed/idk/main/install.sh | bash
+
+
 chmod +x program1.sh
 ./program1.sh
 
