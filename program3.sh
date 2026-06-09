@@ -6,11 +6,11 @@ sudo apt update
 
 sudo apt install -y openjdk-17-jdk wget unzip
 
-sudo apt install -y gradle
+GRADLE_VERSION="8.7"
+GRADLE_HOME="/opt/gradle/gradle-${GRADLE_VERSION}"
+GRADLE_BIN="${GRADLE_HOME}/bin/gradle"
 
-if ! command -v gradle >/dev/null 2>&1; then
-
-    GRADLE_VERSION="8.7"
+if [ ! -f "${GRADLE_BIN}" ]; then
 
     cd /tmp
 
@@ -19,19 +19,17 @@ if ! command -v gradle >/dev/null 2>&1; then
     sudo mkdir -p /opt/gradle
 
     sudo unzip -oq gradle-${GRADLE_VERSION}-bin.zip -d /opt/gradle
-
-    if ! grep -q "/opt/gradle/gradle-${GRADLE_VERSION}/bin" ~/.bashrc; then
-        echo "export PATH=/opt/gradle/gradle-${GRADLE_VERSION}/bin:\$PATH" >> ~/.bashrc
-    fi
-
-    export PATH=/opt/gradle/gradle-${GRADLE_VERSION}/bin:$PATH
 fi
+
+sudo ln -sf "${GRADLE_BIN}" /usr/local/bin/gradle
 
 mkdir -p ~/devops/program3
 
 cd ~/devops/program3
 
 PROJECT="HelloGradle"
+
+rm -rf "${PROJECT}"
 
 mkdir -p ${PROJECT}/src/main/java/com/example
 mkdir -p ${PROJECT}/src/test/java/com/example
@@ -94,3 +92,13 @@ public class AppTest {
     }
 }
 EOF
+
+"${GRADLE_BIN}" -v
+
+"${GRADLE_BIN}" hello
+
+"${GRADLE_BIN}" test
+
+"${GRADLE_BIN}" build
+
+"${GRADLE_BIN}" run
