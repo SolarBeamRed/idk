@@ -6,6 +6,8 @@ sudo apt update
 
 sudo apt install -y openjdk-17-jdk wget unzip
 
+sudo apt install -y gradle
+
 if ! command -v gradle >/dev/null 2>&1; then
 
     GRADLE_VERSION="8.7"
