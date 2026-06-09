@@ -27,7 +27,6 @@ cat > setup.yml << 'EOF'
 ---
 - name: Basic Server Setup
   hosts: local
-  become: yes
 
   tasks:
 
@@ -45,4 +44,4 @@ EOF
 # EXECUTE PLAYBOOK
 ###############################################################################
 
-ansible-playbook -i hosts.ini setup.yml
+sudo ansible-playbook -i hosts.ini setup.yml
