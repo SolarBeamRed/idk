@@ -47,4 +47,4 @@ prg7
 cd ~/devops/program7
 cat hosts.ini
 cat setup.yml
-ansible-playbook -i hosts.ini setup.yml
+sudo ansible-playbook -i hosts.ini setup.yml
